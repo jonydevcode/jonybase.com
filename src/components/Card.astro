@@ -1,31 +1,58 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { getPostUrl } from "@/utils/getPostPaths";
-import { toTransitionName } from "@/utils/toTransitionName";
 import Datetime from "./Datetime.astro";
 
 type Props = {
   variant?: "h2" | "h3";
+  layout?: "stacked" | "row";
 } & CollectionEntry<"posts">;
 
-const { variant: Heading = "h2", id, data, filePath } = Astro.props;
+const {
+  variant: Heading = "h2",
+  layout = "stacked",
+  id,
+  data,
+  filePath,
+} = Astro.props;
 
-const { title, description, ...props } = data;
+const { title, pubDatetime, modDatetime, ...props } = data;
 ---
 
-<li class="my-6">
+<li
+  class:list={[
+    "my-6",
+    {
+      "grid grid-cols-[minmax(0,auto)_minmax(2rem,1fr)_auto] items-baseline gap-4":
+        layout === "row",
+    },
+  ]}
+>
   <a
     href={getPostUrl(id, filePath, Astro.currentLocale)}
     class:list={[
-      "text-accent inline-block text-lg font-medium",
+      "text-accent inline-block",
+      {
+        "text-lg font-medium": layout === "stacked",
+        "text-2xl font-bold sm:text-xl": layout === "row",
+      },
       "decoration-dashed underline-offset-4 hover:underline",
       "focus-visible:no-underline focus-visible:underline-offset-0",
     ]}
   >
-    <Heading transition:name={toTransitionName(title)}>
-      {title}
-    </Heading>
+    <Heading>{title}</Heading>
   </a>
-  <Datetime {...props} />
-  <p>{description}</p>
+  {
+    layout === "row" && (
+      <span aria-hidden="true" class="border-border w-full border-t" />
+    )
+  }
+  <Datetime
+    {...props}
+    {pubDatetime}
+    modDatetime={layout === "row" ? undefined : modDatetime}
+    class:list={{
+      "justify-end text-right whitespace-nowrap": layout === "row",
+    }}
+  />
 </li>

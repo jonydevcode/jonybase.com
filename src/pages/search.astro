@@ -30,12 +30,9 @@ const t = useTranslations(locale);
 <Layout title={`${t.pages.searchTitle} | ${config.site.title}`}>
   <Header />
 
-  <Breadcrumb />
-
   <Main pageTitle={t.pages.searchTitle} pageDesc={t.pages.searchDesc}>
     <div
       id="pagefind-search"
-      transition:persist
       data-backurl={backUrl}
       data-bundle-path={pagefindBundlePath}
     >
@@ -111,14 +108,6 @@ const t = useTranslations(locale);
     });
   }
 
-  document.addEventListener("astro:after-swap", () => {
-    const pagefindSearch = document.querySelector("#pagefind-search");
-
-    // if pagefind search form already exists, don't initialize search component
-    if (pagefindSearch && pagefindSearch.querySelector("form")) return;
-
-    initSearch();
-  });
   initSearch();
 </script>
 

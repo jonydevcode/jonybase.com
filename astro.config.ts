@@ -58,10 +58,10 @@ export default defineConfig({
   },
   fonts: [
     {
-      name: "Google Sans Code",
-      cssVariable: "--font-google-sans-code",
-      provider: fontProviders.google(),
-      fallbacks: ["monospace"],
+      name: "Merriweather",
+      cssVariable: "--font-merriweather",
+      provider: fontProviders.fontsource(),
+      fallbacks: ["serif"],
       weights: [300, 400, 500, 600, 700],
       styles: ["normal", "italic"],
       formats: ["woff", "ttf"],

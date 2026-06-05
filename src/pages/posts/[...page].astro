@@ -26,11 +26,9 @@ const t = useTranslations(locale);
 <Layout title={`${t.pages.postsTitle} | ${config.site.title}`}>
   <Header />
 
-  <Breadcrumb />
-
-  <Main pageTitle={t.pages.postsTitle} pageDesc={t.pages.postsDesc}>
-    <ul>
-      {page.data.map(data => <Card {...data} />)}
+  <Main pageTitle={t.pages.postsTitle}>
+    <ul class="[&>li:first-child]:mt-0">
+      {page.data.map(data => <Card {...data} layout="row" />)}
     </ul>
   </Main>
 
