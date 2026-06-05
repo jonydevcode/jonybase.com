@@ -7,7 +7,6 @@ export default defineAstroPaperConfig({
     description: "My space on the internet.",
     author: "@jonydevcode",
     profile: "https://jonybase.com/",
-    ogImage: "default-og.jpg",
     lang: "en",
     timezone: "Asia/Singapore",
     dir: "ltr",
