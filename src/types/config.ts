@@ -34,10 +34,6 @@ interface PostsConfig {
 interface FeaturesConfig {
   /** Enable light/dark mode toggle. Defaults to true. */
   lightAndDarkMode?: boolean;
-  /**
-   * Generate dynamic OG images for posts that do not provide their own image.
-   */
-  dynamicOgImage?: boolean;
   /** Show the /archives page and link it in nav. Defaults to true. */
   showArchives?: boolean;
   /** Show back button on post detail pages. Defaults to true. */

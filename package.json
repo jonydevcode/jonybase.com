@@ -7,7 +7,8 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro check && astro build && pagefind --site dist && cp -r dist/pagefind public/",
+    "prebuild": "rm -rf public/pagefind",
+    "build": "astro check --minimumSeverity error && astro build && pagefind --site dist",
     "preview": "astro preview",
     "sync": "astro sync",
     "astro": "astro",
@@ -25,8 +26,6 @@
     "lodash.kebabcase": "^4.1.1",
     "remark-collapse": "^0.1.2",
     "remark-toc": "^9.0.0",
-    "satori": "^0.26.0",
-    "sharp": "^0.34.5",
     "slugify": "^1.6.9",
     "tailwindcss": "^4.3.0"
   },
@@ -46,5 +45,7 @@
     "prettier-plugin-tailwindcss": "^0.8.0",
     "typescript": "^6.0.3"
   },
-  "overrides": { "vite": "^7" }
+  "overrides": {
+    "vite": "^7"
+  }
 }
