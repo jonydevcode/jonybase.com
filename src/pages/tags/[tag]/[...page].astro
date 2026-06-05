@@ -44,8 +44,8 @@ const t = useTranslations(locale);
     pageTitle={`${t.pages.tagTitle}: ${tagName}`}
     pageDesc={`${t.pages.tagDesc} "${tagName}".`}
   >
-    <ul>
-      {page.data.map(data => <Card {...data} />)}
+    <ul class="[&>li:first-child]:mt-0">
+      {page.data.map(data => <Card {...data} layout="row" />)}
     </ul>
   </Main>
 
