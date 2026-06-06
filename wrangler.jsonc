@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "jonybase-com",
+  "name": "jonybasecom-worker",
   "compatibility_date": "2026-06-05",
   "assets": {
     "directory": "./dist",
