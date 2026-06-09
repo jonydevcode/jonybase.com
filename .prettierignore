@@ -15,3 +15,6 @@
 
 # Ignore MDX files
 *.mdx
+
+# Generated development search index
+public/pagefind

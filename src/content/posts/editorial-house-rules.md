@@ -1,9 +1,7 @@
 ---
 title: Editorial House Rules v1.0
-author: jonydevcode
 pubDatetime: 2026-06-08T22:50:00+08:00
 slug: editorial-house-rules-1.0
-featured: false
 draft: false
 tags:
   - "rules"

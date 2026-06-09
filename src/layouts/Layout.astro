@@ -1,61 +1,40 @@
 ---
-import { Font } from "astro:assets";
-import { getRelativeLocaleUrl } from "astro:i18n";
-import { getAssetPath } from "@/utils/withBase";
 import config from "@/config";
 import "@/styles/global.css";
 
 type Props = {
   title?: string;
   description?: string;
-  ogImage?: string;
-  canonicalURL?: string;
 };
 
 const { site } = config;
 
-const {
-  title = site.title,
-  description = site.description,
-  ogImage,
-  canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
-} = Astro.props;
-
-const socialImageURL = ogImage
-  ? new URL(ogImage, Astro.site ?? Astro.url).href
-  : undefined;
-const rssHref = getRelativeLocaleUrl(
-  Astro.currentLocale ?? config.site.lang,
-  "rss.xml"
-);
+const { title = site.title, description = site.description } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
+const rssURL = new URL("rss.xml", Astro.site);
 ---
 
 <!doctype html>
-<html
-  dir={site.dir ?? "ltr"}
-  lang={Astro.currentLocale ?? site.lang}
-  class="overflow-y-scroll scroll-smooth"
->
+<html dir={site.dir} lang={site.lang} class="overflow-y-scroll scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href={getAssetPath("favicon.svg")} />
-    <link rel="icon" href={getAssetPath("favicon.ico")} />
+    <link
+      rel="preload"
+      href="/fonts/merriweather-variable-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
-
-    <!-- Font -->
-    <Font
-      cssVariable="--font-merriweather"
-      preload={[{ subset: "latin", weight: 400, style: "normal" }]}
-    />
 
     <!-- Primary meta -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="author" content={site.author} />
-    <link rel="sitemap" href={getAssetPath("sitemap-index.xml")} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -63,44 +42,26 @@ const rssHref = getRelativeLocaleUrl(
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
-    {socialImageURL && <meta property="og:image" content={socialImageURL} />}
 
     <!-- Twitter / X -->
-    <meta
-      property="twitter:card"
-      content={socialImageURL ? "summary_large_image" : "summary"}
-    />
+    <meta property="twitter:card" content="summary" />
     <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    {
-      socialImageURL && (
-        <meta property="twitter:image" content={socialImageURL} />
-      )
-    }
 
     <!-- RSS autodiscovery -->
     <link
       rel="alternate"
       type="application/rss+xml"
       title={site.title}
-      href={new URL(rssHref, Astro.site)}
+      href={rssURL}
     />
 
     <!-- Filled at runtime by theme.ts to match the current background colour -->
     <meta name="theme-color" content="" />
 
-    <!-- Extra head content injected by child layouts (e.g. JSON-LD, article meta) -->
+    <!-- Extra head content injected by child layouts. -->
     <slot name="head" />
-
-    {
-      site.googleVerification && (
-        <meta
-          name="google-site-verification"
-          content={site.googleVerification}
-        />
-      )
-    }
 
     <!--
       Inline FOUC-prevention script: sets data-theme on <html> before

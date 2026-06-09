@@ -10,6 +10,12 @@ node_modules/
 # logs
 pnpm-debug.log*
 
+# pnpm
+.pnpm-store/
+
+# generated development search index
+public/pagefind/
+
 # environment variables
 .env
 .env.production
@@ -19,11 +25,5 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
-
-# pagefind
-public/pagefind
-
-# docker compose
-compose.override.yaml
 
 tmp/

@@ -1,37 +1,22 @@
-/**
- * Internal resolved configuration used throughout the codebase.
- *
- * Prefer editing `astro-paper.config.ts` instead of this file. This module exists to
- * apply defaults and expose a fully-resolved config shape (`ResolvedAstroPaperConfig`).
- */
-import userConfig from "@/astro-paper.config";
-import type { ResolvedAstroPaperConfig } from "./types/config";
-import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
-
-const config: ResolvedAstroPaperConfig = {
+const config = {
   site: {
-    ...userConfig.site,
-    lang: userConfig.site.lang ?? "en",
-    timezone: userConfig.site.timezone ?? "UTC",
-    dir: userConfig.site.dir ?? "ltr",
-    googleVerification:
-      userConfig.site.googleVerification || PUBLIC_GOOGLE_SITE_VERIFICATION,
+    url: "https://jonybase.com/",
+    title: "@jonydevcode",
+    description: "My space on the internet.",
+    author: "@jonydevcode",
+    profile: "https://jonybase.com/",
+    lang: "en",
+    timezone: "Asia/Singapore",
+    dir: "ltr",
   },
   posts: {
-    perPage: userConfig.posts?.perPage ?? 4,
-    perIndex: userConfig.posts?.perIndex ?? 4,
-    scheduledPostMargin:
-      userConfig.posts?.scheduledPostMargin ?? 15 * 60 * 1000,
+    perPage: 4,
+    scheduledPostMargin: 15 * 60 * 1000,
   },
-  features: {
-    lightAndDarkMode: userConfig.features?.lightAndDarkMode ?? true,
-    showArchives: userConfig.features?.showArchives ?? true,
-    showBackButton: userConfig.features?.showBackButton ?? true,
-    editPost: userConfig.features?.editPost ?? { enabled: false },
-    search: userConfig.features?.search ?? "pagefind",
+  socials: {
+    github: "https://github.com/jonydevcode",
+    x: "https://x.com/jonydevcode",
   },
-  socials: userConfig.socials ?? [],
-  shareLinks: userConfig.shareLinks ?? [],
-};
+} as const;
 
 export default config;

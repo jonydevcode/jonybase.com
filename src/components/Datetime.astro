@@ -1,12 +1,5 @@
 ---
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
 import config from "@/config";
-import { useTranslations } from "@/i18n";
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
 
 type Props = {
   class?: string;
@@ -24,15 +17,18 @@ const {
   timezone: postTimezone,
 } = Astro.props;
 
-const t = useTranslations(Astro.currentLocale);
-
 const isModified = modDatetime && modDatetime > pubDatetime;
-
-const datetime = dayjs(isModified ? modDatetime : pubDatetime).tz(
-  postTimezone ?? config.site.timezone
-);
-
-const date = datetime.format("D MMM, YYYY");
+const datetime = new Date(isModified ? modDatetime : pubDatetime);
+const monthAndDay = new Intl.DateTimeFormat("en-GB", {
+  day: "numeric",
+  month: "short",
+  timeZone: postTimezone ?? config.site.timezone,
+}).format(datetime);
+const year = new Intl.DateTimeFormat("en-GB", {
+  year: "numeric",
+  timeZone: postTimezone ?? config.site.timezone,
+}).format(datetime);
+const date = `${monthAndDay}, ${year}`;
 ---
 
 <div
@@ -41,7 +37,7 @@ const date = datetime.format("D MMM, YYYY");
   {
     isModified && (
       <span class:list={["text-sm", { "sm:text-base": size === "lg" }]}>
-        {t.post.updatedAt}:
+        Updated:
       </span>
     )
   }

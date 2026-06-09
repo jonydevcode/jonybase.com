@@ -1,9 +1,7 @@
 ---
 title: Hello, world!
-author: jonydevcode
 pubDatetime: 2026-06-05T15:00:00+08:00
 slug: hello-world
-featured: false
 draft: false
 tags:
   - "null"

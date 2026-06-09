@@ -16,7 +16,7 @@ const {
   filePath,
 } = Astro.props;
 
-const { title, pubDatetime, modDatetime, ...props } = data;
+const { title, pubDatetime, modDatetime, timezone } = data;
 ---
 
 <li
@@ -29,7 +29,7 @@ const { title, pubDatetime, modDatetime, ...props } = data;
   ]}
 >
   <a
-    href={getPostUrl(id, filePath, Astro.currentLocale)}
+    href={getPostUrl(id, filePath)}
     class:list={[
       "text-accent inline-block",
       {
@@ -48,8 +48,8 @@ const { title, pubDatetime, modDatetime, ...props } = data;
     )
   }
   <Datetime
-    {...props}
     {pubDatetime}
+    {timezone}
     modDatetime={layout === "row" ? undefined : modDatetime}
     class:list={{
       "justify-end text-right whitespace-nowrap": layout === "row",

@@ -8,9 +8,6 @@ import Tag from "@/components/Tag.astro";
 import { getPostSlug } from "@/utils/getPostPaths";
 import { getSortedPosts } from "@/utils/getSortedPosts";
 import { slugifyStr } from "@/utils/slugify";
-import EditPost from "./_components/EditPost.astro";
-import ShareLinks from "./_components/ShareLinks.astro";
-import BackButton from "./_components/BackButton.astro";
 import BackToTopButton from "./_components/BackToTopButton.astro";
 import AdjacentPostNav from "./_components/AdjacentPostNav.astro";
 import config from "@/config";
@@ -57,64 +54,25 @@ type Props = {
 
 const { post, prevPost, nextPost } = Astro.props;
 
-const {
-  title,
-  ogImage: initOgImage,
-  canonicalURL,
-  pubDatetime,
-  modDatetime,
-  timezone,
-  tags,
-  hideEditPost,
-} = post.data;
+const { title, pubDatetime, modDatetime, timezone, tags } = post.data;
 
 const { Content } = await render(post);
-
-let ogImageUrl: string | undefined;
-
-if (typeof initOgImage === "string") {
-  ogImageUrl = initOgImage;
-} else if (initOgImage?.src) {
-  ogImageUrl = initOgImage.src;
-}
-
-const ogImage = ogImageUrl
-  ? new URL(ogImageUrl, Astro.url.origin).href
-  : undefined;
 ---
 
 <PostLayout
   title={`${title} | ${config.site.title}`}
-  ogImage={ogImage}
-  canonicalURL={canonicalURL}
   pubDatetime={pubDatetime}
   modDatetime={modDatetime}
 >
   <Header />
 
-  <BackButton />
-
-  <main
-    id="main-content"
-    class:list={["app-layout", { "pt-6": !config.features.showBackButton }]}
-    data-pagefind-body
-  >
+  <main id="main-content" class="app-layout pt-6" data-pagefind-body>
     <h1 class="text-accent inline-block text-lg font-bold sm:text-xl">
       {title}
     </h1>
 
     <div class="my-2 flex items-center gap-2">
       <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" />
-      <span
-        aria-hidden="true"
-        class:list={[
-          "text-muted-foreground max-sm:hidden",
-          { hidden: !config.features.editPost?.enabled || hideEditPost },
-        ]}
-      >
-        |
-      </span>
-      <EditPost {hideEditPost} {post} class="max-sm:hidden" />
     </div>
 
     <article
@@ -129,8 +87,6 @@ const ogImage = ogImageUrl
     </article>
 
     <hr class="my-8 border-dashed" />
-
-    <EditPost class="sm:hidden" {hideEditPost} {post} />
 
     <BackToTopButton />
 
@@ -206,16 +162,9 @@ const ogImage = ogImageUrl
       const wrapper = document.createElement("div");
       wrapper.style.position = "relative";
 
-      const computedStyle = getComputedStyle(codeBlock);
-      const hasFileNameOffset =
-        computedStyle.getPropertyValue("--file-name-offset").trim() !== "";
-
-      const topClass = hasFileNameOffset
-        ? "top-(--file-name-offset)"
-        : "-top-3";
-
       const copyButton = document.createElement("button");
-      copyButton.className = `copy-code absolute end-3 ${topClass} rounded bg-muted border border-muted px-2 py-1 text-xs leading-4 text-foreground font-medium`;
+      copyButton.className =
+        "copy-code absolute end-3 -top-3 rounded bg-muted border border-muted px-2 py-1 text-xs leading-4 text-foreground font-medium";
       copyButton.innerHTML = copyButtonLabel;
       codeBlock.setAttribute("tabindex", "0");
       codeBlock.appendChild(copyButton);
