@@ -1,7 +1,12 @@
 ---
+import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
+import Card from "@/components/Card.astro";
 import Footer from "@/components/Footer.astro";
+import { getSortedPosts } from "@/utils/getSortedPosts";
+
+const latestPosts = getSortedPosts(await getCollection("posts")).slice(0, 3);
 ---
 
 <Layout>
@@ -10,6 +15,12 @@ import Footer from "@/components/Footer.astro";
     <section id="hero" class="border-border space-y-6 border-b pb-6">
       <p>Husband, father, employee by day, systems programmer by night.</p>
       <p>Sweating it out in Singapore.</p>
+    </section>
+    <section aria-labelledby="latest-writing" class="pt-6">
+      <h2 id="latest-writing" class="text-lg font-semibold">Latest Writing</h2>
+      <ul class="[&>li:last-child]:mb-0">
+        {latestPosts.map(post => <Card {...post} variant="h3" layout="row" />)}
+      </ul>
     </section>
   </main>
   <Footer />
