@@ -10,4 +10,4 @@ A minimal personal site and blog built with [Astro](https://astro.build/).
 - `pnpm preview` previews the production build.
 - `pnpm deploy` deploys the static build with Wrangler.
 
-Published posts are available as an RSS feed at `/rss.xml`.
+Published posts are available as an RSS feed at `/writing/feed`.

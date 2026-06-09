@@ -11,7 +11,7 @@ const { site } = config;
 
 const { title = site.title, description = site.description } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
-const rssURL = new URL("rss.xml", Astro.site);
+const rssURL = new URL("writing/feed", Astro.site);
 ---
 
 <!doctype html>

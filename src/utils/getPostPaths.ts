@@ -37,5 +37,5 @@ export function getPostSlug(id: string, filePath: string | undefined): string {
 
 /** Returns a navigable URL for use in links and the RSS feed. */
 export function getPostUrl(id: string, filePath: string | undefined): string {
-  return `${import.meta.env.BASE_URL}posts/${getPostSlugPath(id, filePath)}/`;
+  return `${import.meta.env.BASE_URL}writing/${getPostSlugPath(id, filePath)}/`;
 }
