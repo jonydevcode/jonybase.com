@@ -12,6 +12,7 @@
 !eslint.config.js
 !README.md
 !.vscode
+!wrangler.jsonc
 
 # Ignore MDX files
 *.mdx
