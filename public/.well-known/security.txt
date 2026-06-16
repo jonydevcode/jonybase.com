@@ -1,0 +1,4 @@
+Contact: https://github.com/jonydevcode/jonybase.com/issues
+Expires: 2036-06-16T00:00:00Z
+Preferred-Languages: en
+Canonical: https://jonybase.com/.well-known/security.txt
