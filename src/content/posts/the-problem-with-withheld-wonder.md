@@ -16,6 +16,8 @@ Months ago, I came across a trailer for [Disclosure Day](https://www.youtube.com
 
 The trailer genuinely filled me with wonder. In the early version of the trailer, aliens were not even mentioned. That brief scene with Emily Blunt making the strange noises stirred up great intrigue in me. I wanted to see the movie because I wanted to be filled with a sense of discovery. Having finally watched it, the film simply does not deliver. I felt like everything in the movie was pointing towards something much more profound, but never fully bringing the viewer to that destination.
 
+_Warning: Major spoilers ahead. **DO NOT** continue if you want to avoid spoilers._
+
 The movie started strong. I was immediately thrown into a tense scene between Daniel vs Noah and his goons. There were multiple points of intrigue. What was that small cylindrical piece that Daniel held that struck such fear into everyone? What was the “truth” that was being hidden? I felt like I hit the ground running. The movie does a good job of moving the plot along without wasting time on exposition. I quickly learnt that there are good guys (the ones who wanted disclosure), and bad guys (the ones who wanted the secrets kept hidden). The film was setting up for a satisfying pay off at the end.
 
 However, as the plot marched on, the movie started to feel less like a display of intrigue and wonder, and more like a frustrating list of weak points and unanswered questions.
